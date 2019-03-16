@@ -1,0 +1,14 @@
+all: mandelthread
+
+mandelthread: mandelthread.o bitmap.o
+	gcc mandelthread.o bitmap.o -o mandelseries -lpthread
+
+mandelthread.o: mandelthreads.c
+	gcc -Wall -g -c mandelthreads.c -o mandelthread.o
+
+bitmap.o: bitmap.c
+	gcc -Wall -g -c bitmap.c -o bitmap.o
+
+clean:
+	find . -type f | xargs touch
+	rm -f mandelthread.o bitmap.o mandelseries
